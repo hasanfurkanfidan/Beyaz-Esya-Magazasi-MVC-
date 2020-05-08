@@ -1,0 +1,51 @@
+﻿@using MvcStok.Models.Entity
+@model List<TBLURUNLER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_mainlayout.cshtml";
+}
+
+<table id="tbl1" class="table table-hover table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Ürün Id</th>
+            <th>Ürün Adı</th>
+            <th>Marka</th>
+            <th>Kategori</th>
+            <th>Fiyat</th>
+            <th>STOK</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ktgr in Model)
+        {
+            <tr>
+                <td>
+                    @ktgr.URUNID
+                </td>
+                <td>@ktgr.URUNAD</td>
+                <td>@ktgr.MARKA</td>
+                <td>@ktgr.TBLKATEGORI.KATEGORIAD</td>
+                <td>@ktgr.FIYAT</td>
+                <td>@ktgr.STOK</td>
+                <td><a href="/Urun/UrunSil/@ktgr.URUNID" class="btn btn-danger">Ürün Sil</a></td>
+                <td><a href="/Urun/UrunGetir/@ktgr.URUNID" class="btn btn-success" />Ürün Güncelle</td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+<a href="/Urun/UrunEkle " class="btn btn-primary">Yeni Ürün Ekle</a>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+<script>
+    $('#tbl1').dataTable({});
+</script>

@@ -1,0 +1,38 @@
+﻿@using MvcStok.Models.Entity
+@model List<TBLMUSTERILER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_mainlayout.cshtml";
+}
+@using (Html.BeginForm("Index", "Musteri", FormMethod.Get))
+{
+    <p>Aranacak Müşteri Adı:@Html.TextBox("p")
+        <input type="submit" value="ara"/>
+        </p>
+
+}
+<table class="table table-hover table-bordered table-striped">
+    <tr>
+        <th>Müşteri Id</th>
+        <th>Müşteri Ad</th>
+        <th>Müşteri Soyad</th>
+        <th>Müşteri Sil</th>
+        <th>Müşteri Güncelle</th>
+    </tr>
+    <tbody>
+    @foreach (var ktgr in Model)
+    {
+        <tr>
+            <td>
+                @ktgr.MUSTERIID
+            </td>
+            <td>@ktgr.MUSTERIAD</td>
+            <td>@ktgr.MUSTERISOYAD</td>
+            <td><a href="/Musteri/MusteriSil/@ktgr.MUSTERIID" class="btn btn-danger">Müşteri Sil</a></td>
+            <td><a href="/Musteri/MusteriGetir/@ktgr.MUSTERIID"class="btn btn-success">Müşteri Güncelle</a></td>
+        </tr>
+    }
+    </tbody>
+</table>
+<a href="/Musteri/MusteriEkle" class="btn btn-primary">Müşteri Ekle</a>
+
